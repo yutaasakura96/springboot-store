@@ -55,3 +55,24 @@ nbdist/
 # Other IDEs
 *.swp
 *.swo
+
+# Maven target directory
+/target/
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# OS generated files
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Environment files
+.env
+.env.local

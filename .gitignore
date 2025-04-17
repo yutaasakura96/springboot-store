@@ -25,3 +25,33 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+
+# Visual Studio Code files
+.vscode/
+*.code-workspace
+
+# Eclipse files
+.project
+.classpath
+.settings/
+*.launch
+
+# NetBeans files
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+*.nb-gradle/
+
+# JetBrains Rider files
+.idea/
+*.sln.iml
+
+# Other IDEs
+*.swp
+*.swo

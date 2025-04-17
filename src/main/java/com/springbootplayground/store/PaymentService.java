@@ -1,5 +1,5 @@
 package com.springbootplayground.store;
 
 public interface PaymentService {
-  void processPayment(double amount);
+    void processPayment(double amount);
 }

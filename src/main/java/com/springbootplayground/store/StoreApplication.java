@@ -10,6 +10,6 @@ public class StoreApplication {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
         var OrderService = context.getBean(OrderService.class);
-        OrderService.placeorder();
+        OrderService.placeOrder();
     }
 }

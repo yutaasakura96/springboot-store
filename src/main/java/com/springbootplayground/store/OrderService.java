@@ -2,6 +2,9 @@ package com.springbootplayground.store;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 @Service
 public class OrderService {
     private PaymentService paymentService;
@@ -9,6 +12,16 @@ public class OrderService {
     public OrderService(PaymentService paymentService) {
         this.paymentService = paymentService;
         System.out.println("OrderService Created");
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("OrderService PostConstruct");
+    }
+
+    @PreDestroy
+    public void cleanup() {
+        System.out.println("OrderService PreDestroy");
     }
 
     public void placeOrder() {

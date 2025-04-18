@@ -2,16 +2,15 @@ package com.springbootplayground.store;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class StoreApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(StoreApplication.class, args);
-        var OrderService = context.getBean(OrderService.class);
-        var OrderService2 = context.getBean(OrderService.class);
-        OrderService.placeOrder();
-        context.close();
+        ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
+        var userService = context.getBean(UserService.class);
+        userService.registerUser(new User("test@test.com", 1L, "test", "test"));
+        userService.registerUser(new User("test@test.com", 1L, "test", "test"));
     }
 }

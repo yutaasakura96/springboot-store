@@ -15,3 +15,7 @@ paypal:
   supported-currencies: USD,EUR,GBP
 
 payment-gateway: paypal
+
+mail:
+  host: smtp.example.com
+  port: 587

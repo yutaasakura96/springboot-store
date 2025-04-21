@@ -1,12 +1,12 @@
-package com.springbootplayground.store;
+package com.codewithmosh.store;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class AppConfig {
-
     @Value("${payment-gateway:stripe}")
     private String paymentGateway;
 
@@ -17,15 +17,15 @@ public class AppConfig {
 
     @Bean
     public PaymentService paypal() {
-        return new PaypalPaymentService();
+        return new PayPalPaymentService();
     }
 
     @Bean
     public OrderService orderService() {
         if (paymentGateway.equals("stripe")) {
             return new OrderService(stripe());
-        } else {
-            return new OrderService(paypal());
         }
+
+        return new OrderService(paypal());
     }
 }

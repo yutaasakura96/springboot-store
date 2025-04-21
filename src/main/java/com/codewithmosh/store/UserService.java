@@ -1,4 +1,4 @@
-package com.springbootplayground.store;
+package com.codewithmosh.store;
 
 import org.springframework.stereotype.Service;
 
@@ -14,10 +14,10 @@ public class UserService {
 
     public void registerUser(User user) {
         if (userRepository.findByEmail(user.getEmail()) != null) {
-            throw new RuntimeException("User with email " + user.getEmail() + " already exists");
+            throw new IllegalArgumentException("User with email " + user.getEmail() + " already exists");
         }
-        userRepository.save(user);
 
-        notificationService.send("You registered successfully", user.getEmail());
+        userRepository.save(user);
+        notificationService.send("You registered successfully!", user.getEmail());
     }
 }

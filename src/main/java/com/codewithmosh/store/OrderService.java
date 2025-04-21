@@ -1,17 +1,17 @@
-package com.springbootplayground.store;
-
-import org.springframework.stereotype.Service;
+package com.codewithmosh.store;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class OrderService {
     private PaymentService paymentService;
 
     public OrderService(PaymentService paymentService) {
         this.paymentService = paymentService;
-        System.out.println("OrderService Created");
+        System.out.println("OrderService created");
     }
 
     @PostConstruct

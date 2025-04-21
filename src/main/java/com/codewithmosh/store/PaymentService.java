@@ -1,4 +1,4 @@
-package com.springbootplayground.store;
+package com.codewithmosh.store;
 
 public interface PaymentService {
     void processPayment(double amount);

@@ -61,6 +61,11 @@
             <artifactId>flyway-mysql</artifactId>
             <groupId>org.flywaydb</groupId>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>annotationProcessor</scope>
+        </dependency>
 
 
     </dependencies>

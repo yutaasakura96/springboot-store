@@ -1,9 +1,17 @@
 package com.example.store.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Setter
 @Getter
 @Entity
@@ -24,5 +32,10 @@ public class Address {
     private String state;
 
     @Column(name = "zip")
-    private String zipCode;
+    private String zip;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    private User user;
 }

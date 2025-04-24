@@ -1,13 +1,14 @@
 package com.example.store.services;
 
-import jakarta.persistence.EntityManager;
-import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.example.store.entities.Address;
 import com.example.store.entities.User;
 import com.example.store.repositories.AddressRepository;
 import com.example.store.repositories.ProfileRepository;
 import com.example.store.repositories.UserRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
 @Service
@@ -48,5 +49,21 @@ public class UserService {
 
     public void fetchAddress() {
         var address = addressRepository.findById(1L).orElseThrow();
+    }
+
+    public void persistRelated() {
+        var user = User.builder()
+                .name("John Doe")
+                .email("john.doe@example.com")
+                .password("password")
+                .build();
+        var address = Address.builder()
+                .street("street")
+                .city("city")
+                .state("state")
+                .zip("zip")
+                .build();
+        user.addAddress(address);
+        userRepository.save(user);
     }
 }

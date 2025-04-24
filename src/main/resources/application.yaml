@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/store?createDatabaseIfNotExist=true
     username: root
-    password: 9882
+    password: MyPassword!
 stripe:
   apiUrl: https://api.stripe.com
   timeout: 1000

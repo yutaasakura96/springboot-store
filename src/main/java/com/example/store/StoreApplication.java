@@ -5,14 +5,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import com.example.store.repositories.UserRepository;
+import com.example.store.services.UserService;
 
 @SpringBootApplication
 public class StoreApplication {
 
     public static void main(String[] args) {
-       ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
-       var repository = context.getBean("userRepository", UserRepository.class);
-       repository.deleteById(1L);
-    }
+        ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
+        var service = context.getBean(UserService.class);
 
+        service.showEntityStates();
+    }
 }

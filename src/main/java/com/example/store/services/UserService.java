@@ -94,9 +94,15 @@ public class UserService {
     public void fetchProducts() {
         var product = new Product();
         product.setName("product");
-       var matcher =  ExampleMatcher.matching().withIncludeNullValues().withIgnorePaths("id", "description").withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+        var matcher =  ExampleMatcher.matching().withIncludeNullValues().withIgnorePaths("id", "description").withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         var example = Example.of(product, matcher);
         var products = productRepository.findAll(example);
+        products.forEach(System.out::println);
+    }
+
+
+    public void fetchProductsByCriteria() {
+        var products = productRepository.findProductsByCriteria("prod", BigDecimal.valueOf(1),null);
         products.forEach(System.out::println);
     }
 

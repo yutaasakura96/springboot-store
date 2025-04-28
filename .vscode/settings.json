@@ -1,4 +1,14 @@
 {
+  "java.jdt.ls.vmargs": "-javaagent:/Users/yutaasakura/.m2/repository/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar",
+  "java.configuration.updateBuildConfiguration": "automatic",
   "java.compile.nullAnalysis.mode": "automatic",
-  "java.configuration.updateBuildConfiguration": "interactive"
+  "java.errors.incompleteClasspath.severity": "ignore",
+  "java.import.maven.enabled": true,
+  "java.import.gradle.enabled": false,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  }
 }

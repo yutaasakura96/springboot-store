@@ -1,6 +1,9 @@
 package com.example.store.services;
 
-import com.example.store.entities.*;
+import com.example.store.entities.Address;
+import com.example.store.entities.CategoryRepository;
+import com.example.store.entities.ProductRepository;
+import com.example.store.entities.User;
 import com.example.store.repositories.AddressRepository;
 import com.example.store.repositories.ProfileRepository;
 import com.example.store.repositories.UserRepository;
@@ -8,8 +11,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
 
 @AllArgsConstructor
 @Service
@@ -80,14 +81,9 @@ public class UserService {
 
     @Transactional
     public void manageProducts() {
-        var category = categoryRepository.findById((byte)1).orElseThrow();
-
-        var product = Product.builder()
-                .name("Product 2")
-                .description("Product 2")
-                .price(BigDecimal.valueOf(10.99))
-                .category(category)
-                .build();
-        productRepository.save(product);
+        var user  = userRepository.findById(2L).orElseThrow();
+        var products = productRepository.findAll();
+        products.forEach(user::addFavoriteProduct);
+        userRepository.save(user);
     }
 }

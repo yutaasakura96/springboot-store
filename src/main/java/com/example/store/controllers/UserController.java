@@ -1,13 +1,12 @@
 package com.example.store.controllers;
 
-import com.example.store.dtos.UserDto;
-import com.example.store.mappers.UserMapper;
-import com.example.store.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import com.example.store.dtos.UserDto;
+import com.example.store.mappers.UserMapper;
+import com.example.store.repositories.UserRepository;
 import java.util.Set;
 
 @RestController
@@ -19,7 +18,7 @@ public class UserController {
 
     @GetMapping
     public Iterable<UserDto> getAllUsers(
-          @RequestParam(required = false, defaultValue = "", name = "sort") String sortBy
+        @RequestParam(required = false, defaultValue = "", name = "sort") String sortBy
     ) {
         if (!Set.of("name", "email").contains(sortBy))
             sortBy = "name";
@@ -36,6 +35,7 @@ public class UserController {
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
+
         return ResponseEntity.ok(userMapper.toDto(user));
     }
 }

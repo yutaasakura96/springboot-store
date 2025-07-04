@@ -2,7 +2,6 @@ package com.example.store.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
-
 import com.example.store.dtos.RegisterUserRequest;
 import com.example.store.dtos.UpdateUserRequest;
 import com.example.store.dtos.UserDto;

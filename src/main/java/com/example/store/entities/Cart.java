@@ -34,14 +34,13 @@ public class Cart {
 
     public CartItem getItem(Long productId) {
         return items.stream()
-                .filter(cartItem -> cartItem.getProduct().getId().equals(productId))
+                .filter(item -> item.getProduct().getId().equals(productId))
                 .findFirst()
                 .orElse(null);
     }
 
     public CartItem addItem(Product product) {
         var cartItem = getItem(product.getId());
-
         if (cartItem != null) {
             cartItem.setQuantity(cartItem.getQuantity() + 1);
         } else {

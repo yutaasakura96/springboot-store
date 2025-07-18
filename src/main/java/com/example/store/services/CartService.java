@@ -1,5 +1,7 @@
 package com.example.store.services;
 
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import com.example.store.dtos.CartDto;
 import com.example.store.dtos.CartItemDto;
 import com.example.store.entities.Cart;
@@ -8,21 +10,19 @@ import com.example.store.exceptions.ProductNotFoundException;
 import com.example.store.mappers.CartMapper;
 import com.example.store.repositories.CartRepository;
 import com.example.store.repositories.ProductRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.util.UUID;
 
-@AllArgsConstructor
 @Service
+@AllArgsConstructor
 public class CartService {
-    private final CartRepository cartRepository;
-    private final CartMapper cartMapper;
-    private final ProductRepository productRepository;
+    private CartRepository cartRepository;
+    private CartMapper cartMapper;
+    private ProductRepository productRepository;
 
     public CartDto createCart() {
         var cart = new Cart();
         cartRepository.save(cart);
+
         return cartMapper.toDto(cart);
     }
 
@@ -49,6 +49,7 @@ public class CartService {
         if (cart == null) {
             throw new CartNotFoundException();
         }
+
         return cartMapper.toDto(cart);
     }
 
@@ -62,17 +63,21 @@ public class CartService {
         if (cartItem == null) {
             throw new ProductNotFoundException();
         }
+
         cartItem.setQuantity(quantity);
         cartRepository.save(cart);
+
         return cartMapper.toDto(cartItem);
     }
 
     public void removeItem(UUID cartId, Long productId) {
         var cart = cartRepository.getCartWithItems(cartId).orElse(null);
         if (cart == null) {
-            throw new CartNotFoundException();
+           throw new CartNotFoundException();
         }
+
         cart.removeItem(productId);
+
         cartRepository.save(cart);
     }
 
@@ -83,6 +88,7 @@ public class CartService {
         }
 
         cart.clear();
+
         cartRepository.save(cart);
     }
 }

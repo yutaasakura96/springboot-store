@@ -1,12 +1,5 @@
 package com.example.store.controllers;
 
-import com.example.store.dtos.ChangePasswordRequest;
-import com.example.store.dtos.RegisterUserRequest;
-import com.example.store.dtos.UpdateUserRequest;
-import com.example.store.dtos.UserDto;
-import com.example.store.entities.Role;
-import com.example.store.mappers.UserMapper;
-import com.example.store.repositories.UserRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -15,7 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
+import com.example.store.dtos.ChangePasswordRequest;
+import com.example.store.dtos.RegisterUserRequest;
+import com.example.store.dtos.UpdateUserRequest;
+import com.example.store.dtos.UserDto;
+import com.example.store.entities.Role;
+import com.example.store.mappers.UserMapper;
+import com.example.store.repositories.UserRepository;
 import java.util.Map;
 import java.util.Set;
 
@@ -51,14 +50,14 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> RegisterUser(
+    public ResponseEntity<?> registerUser(
             @Valid @RequestBody RegisterUserRequest request,
             UriComponentsBuilder uriBuilder) {
-        if (userRepository.existsUserByEmail(request.getEmail())) {
+        if (userRepository.existsByEmail(request.getEmail())) {
             return ResponseEntity.badRequest().body(
                     Map.of("email", "Email is already registered.")
             );
-        };
+        }
 
         var user = userMapper.toEntity(request);
         user.setPassword(passwordEncoder.encode(user.getPassword()));

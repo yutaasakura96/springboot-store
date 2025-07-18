@@ -11,7 +11,9 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleValidationErrors(MethodArgumentNotValidException exception) {
+    public ResponseEntity<Map<String, String>> handleValidationErrors(
+            MethodArgumentNotValidException exception
+    ) {
         var errors = new HashMap<String, String>();
 
         exception.getBindingResult().getFieldErrors().forEach(error -> {
@@ -20,5 +22,4 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.badRequest().body(errors);
     }
-
 }
